@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { AppEvent, EventFormData } from "./types/index";
 import { EventForm } from "./components/EventForm";
+import { EventList } from "./components/EventList";
 
 function App() {
   const [events, setEvents] = useState<AppEvent[]>([]);
@@ -38,13 +39,7 @@ function App() {
 
           {/* Right Column: List takes up remaining columns */}
           <div className="md:col-span-7 lg:col-span-8">
-            {/* Your team member's Event List component will go here */}
-            <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">
-                Upcoming Events
-              </h2>
-              {/* List items... */}
-            </div>
+            <EventList events={events} />
           </div>
         </div>
       </div>
