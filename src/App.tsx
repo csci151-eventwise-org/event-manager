@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react"; // Kept useEffect from develop
-import { EventList } from "./components/EventList"; // Kept your import
-import type { AppEvent, EventFormData, EventFilterType } from "./types/index"; // Added EventFilterType
+import { useState } from "react";
+import type { AppEvent, EventFormData } from "./types/index";
 import { EventForm } from "./components/EventForm";
 import { EventList } from "./components/EventList";
 import { EditForm } from "./components/EditForm";
@@ -9,15 +8,14 @@ import "./App.css";
 function App() {
   const [events, setEvents] = useState<AppEvent[]>([]);
   const [editingEventId, setEditingEventId] = useState<string | null>(null);
-  const [filter, setFilter] = useState<EventFilterType>("all"); // From develop
-  const [filteredEvents, setFilteredEvents] = useState<AppEvent[]>([]); // From develop
 
   const handleCreateEvent = (formData: EventFormData) => {
     const newEvent: AppEvent = {
       ...formData,
-      id: crypto.randomUUID(), 
-      isAttended: false, 
+      id: crypto.randomUUID(),
+      isAttended: false,
     };
+
     setEvents((prev) => [...prev, newEvent]);
   };
 
@@ -36,46 +34,12 @@ function App() {
     setEditingEventId(null);
   };
 
+  const handleDeleteEvent = (eventId: string) => {
+    setEvents((prev) => prev.filter((event) => event.id !== eventId));
+    setEditingEventId((prev) => (prev === eventId ? null : prev));
+  };
+
   const editingEvent = events.find((event) => event.id === editingEventId);
-
-  // --- YOUR FEATURE LOGIC ---
-  const toggleEventStatus = (eventId: string) => {
-    setEvents((prevEvents) =>
-      prevEvents.map((event) =>
-        event.id === eventId
-          ? { ...event, isAttended: !event.isAttended }
-          : event
-      )
-    );
-  };
-
-  // --- FILTER FEATURE LOGIC (from develop) ---
-  const handleFilterChange = (newFilter: EventFilterType) => {
-    setFilter(newFilter);
-  };
-
-  function filterEvents(events: AppEvent[], filter: EventFilterType): AppEvent[] {
-    const today = new Date();
-    const todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-    return events.filter((e) => {
-      const eventDate = new Date(e.date);
-      const eventDateOnly = new Date(eventDate.getFullYear(), eventDate.getMonth(), eventDate.getDate());
-      switch (filter) {
-        case "past":
-          return eventDateOnly < todayDate;
-        case "current":
-          return eventDateOnly.getTime() === todayDate.getTime();
-        case "upcoming":
-          return eventDateOnly > todayDate;
-        default:
-          return true;
-      }
-    });
-  }
-
-  useEffect(() => {
-    setFilteredEvents(filterEvents(events, filter));
-  }, [events, filter]);
 
   return (
     <div className="min-h-screen bg-slate-50 p-6 md:p-12 font-sans">
@@ -95,9 +59,11 @@ function App() {
           </div>
 
           <div className="md:col-span-7 lg:col-span-8">
-            <EventList events={events} onEdit={handleStartEdit} />
-            {/* RESOLUTION: We pass filteredEvents and YOUR toggle function */}
-            <EventList events={filteredEvents} onToggleStatus={toggleEventStatus} />
+            <EventList
+              events={events}
+              onEdit={handleStartEdit}
+              onDelete={handleDeleteEvent}
+            />
           </div>
         </div>
       </div>
