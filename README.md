@@ -109,15 +109,21 @@ We followed the **Conventional Commits** specification:
 
 ### Merge Conflicts Resolved
 
-[Document conflicts here]
-
-**Example:**
+**Conflict PT1:**
 
 - **Conflict:** Merge conflict in `App.tsx` when merging `feature/event-list` into `develop`
 - **Files Affected:** `src/App.tsx`
-- **Cause:** Multiple members edited event state management
-- **Resolution:** [Describe how resolved]
-- **Resolved By:** [Team Member Name]
+- **Cause:** Multiple members edited event state management and props structure simultaneously
+- **Resolution:** Kept both the event list display logic and the form submission handler, merged the state updates carefully
+- **Resolved By:** Concoles, Cyril Jade
+
+**Conflict PT2:**
+
+- **Conflict:** Merge conflict in `EventForm.tsx` when merging `feature/edit-delete` into `develop`
+- **Files Affected:** `src/components/EventForm.tsx`
+- **Cause:** Form validation logic was updated in both branches with different approaches
+- **Resolution:** Integrated the more comprehensive validation from `feature/edit-delete` while maintaining the form structure from the main branch
+- **Resolved By:** Mosquera, Gabriel
 
 ---
 
@@ -143,7 +149,13 @@ event-manager/
 
 ## Screenshots
 
-[Add screenshots of your application here]
+### Conflict PT1
+
+![Conflict PT1](conflict%20pt1.png)
+
+### Conflict PT2
+
+![Conflict PT2](conflictpt2.png)
 
 ---
 
@@ -151,12 +163,17 @@ event-manager/
 
 **Challenges:**
 
-- [Describe challenges faced]
+- Managing concurrent development across multiple team members working on different features
+- Handling merge conflicts when multiple developers modified shared component state
+- Coordinating styling changes across components to maintain consistency
+- Implementing TypeScript types across a collaborative React project
 
 **Key Learnings:**
 
-- [What did the team learn about Git workflow?]
-- [What did the team learn about collaboration?]
+- **Git Workflow:** Working with feature branches and pull requests helps prevent conflicts and improves code quality
+- **Collaboration:** Clear communication and atomic commits make merging and conflict resolution much smoother
+- **Component Design:** Proper prop passing and state lifting reduces conflicts and makes code more maintainable
+- **TypeScript Benefits:** Strong typing caught errors early and made code reviews more effective
 
 ---
 
