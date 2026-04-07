@@ -15,11 +15,11 @@ Your team consists of the following members:
 
 | Full Name               | GitHub Username | Assigned Atomic Task               |
 | ----------------------- | --------------- | ---------------------------------- |
-| Catigan, Andrei William | @username       | Event Status Management            |
-| Concoles, Cyril Jade    | @username       | Edit Event Details & Delete Events |
-| Moreno, Radz Ponce      | @username       | Event List Display                 |
-| Mosquera, Gabriel       | @username       | Event Creation                     |
-| Oreiro, Genesis Ar      | @username       | Event Details and Filtering        |
+| Catigan, Andrei William | @AndreiCatigan  | Event Status Management            |
+| Concoles, Cyril Jade    | @con-cyse       | Edit Event Details & Delete Events |
+| Moreno, Radz Ponce      | @donot4tmee     | Event List Display                 |
+| Mosquera, Gabriel       | @gabiXDpapi     | Event Creation                     |
+| Oreiro, Genesis Ar      | @nyx-garso      | Event Details and Filtering        |
 
 ### Team Leader Selection and Responsibilities
 

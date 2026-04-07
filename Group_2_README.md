@@ -8,11 +8,11 @@ An event tracking application that helps users organize and manage their upcomin
 
 | Full Name               | Role      | GitHub Username | Assigned Atomic Task                 |
 | ----------------------- | --------- | --------------- | ------------------------------------ |
-| Catigan, Andrei William | Developer | @username       | [Event Status Management]            |
-| Concoles, Cyril Jade    | Developer | @username       | [Edit Event Details & Delete Events] |
-| Moreno, Radz Ponce      | Developer | @username       | [Event List Display]                 |
-| Mosquera, Gabriel       | Developer | @username       | [Event Creation]                     |
-| Oreiro, Genesis Ar      | Developer | @username       | [Event Details and Filtering]        |
+| Catigan, Andrei William | Developer | @AndreiCatigan  | [Event Status Management]            |
+| Concoles, Cyril Jade    | Developer | @con-cyse       | [Edit Event Details & Delete Events] |
+| Moreno, Radz Ponce      | Developer | @donot4tmee     | [Event List Display]                 |
+| Mosquera, Gabriel       | Developer | @gabiXDpapi     | [Event Creation]                     |
+| Oreiro, Genesis Ar      | Developer | @nyx-garso      | [Event Details and Filtering]        |
 
 ---
 

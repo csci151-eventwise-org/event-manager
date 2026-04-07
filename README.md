@@ -1,133 +1,190 @@
 # Event Manager
 
-A modern, responsive event tracking application built with React and TypeScript that helps users organize and manage their upcoming events with dates, times, and locations.
+An event tracking application that helps users organize and manage their upcoming events with dates, times, and locations.
 
-## ✨ Features
+---
 
-- **Create Events**: Add new events with title, date, time, and location
-- **Event List Display**: View all upcoming events in a clean, organized layout
-- **Modern UI**: Beautiful gradient backgrounds, glassmorphism effects, and smooth animations
-- **Responsive Design**: Works seamlessly on desktop and mobile devices
-- **TypeScript**: Full type safety for robust development
-- **Tailwind CSS**: Modern styling with utility-first CSS framework
+## Team Members
 
-## 🚀 Technology Stack
+| Full Name               | Role      | GitHub Username | Assigned Atomic Task                 |
+| ----------------------- | --------- | --------------- | ------------------------------------ |
+| Catigan, Andrei William | Developer | @AndreiCatigan  | [Event Status Management]            |
+| Concoles, Cyril Jade    | Developer | @con-cyse       | [Edit Event Details & Delete Events] |
+| Moreno, Radz Ponce      | Developer | @donot4tmee     | [Event List Display]                 |
+| Mosquera, Gabriel       | Developer | @gabiXDpapi     | [Event Creation]                     |
+| Oreiro, Genesis Ar      | Developer | @nyx-garso      | [Event Details and Filtering]        |
 
-- **Frontend Framework**: React 19
-- **Language**: TypeScript
-- **Build Tool**: Vite
-- **Styling**: Tailwind CSS 4
-- **State Management**: React Hooks (useState, useEffect)
-- **Development Tools**: ESLint, TypeScript Compiler
+---
 
-## 📋 Prerequisites
+## Features Implemented
+
+- [ ] Create Event - Add events with title, date, time, location
+- [ ] Event List - Display all events chronologically
+- [ ] Event Details - Show full event information
+- [ ] Mark as Attended - Toggle event attendance status
+- [ ] Filter Events - Filter by upcoming/past/all
+- [ ] Edit Event - Modify event details
+- [ ] Delete Event - Remove events with confirmation
+- [ ] [Add any additional features implemented]
+
+---
+
+## Technology Stack
+
+- **Frontend Framework:** React
+- **Language:** TypeScript / JavaScript
+- **Build Tool:** Vite / Create React App
+- **Styling:** [Your choice - CSS/Tailwind/etc.]
+- **State Management:** React Hooks (useState, useEffect)
+- **Version Control:** Git & GitHub
+
+---
+
+## Setup & Installation
+
+### Prerequisites
 
 - Node.js (v18 or higher)
 - npm or yarn
 - Git
 
-## 🛠️ Installation & Setup
+### Installation Steps
 
 1. **Clone the repository**
 
    ```bash
-   git clone <repository-url>
-   cd event-manager
+   [Write the command to clone the repository]
+   [Write the command to navigate to the project directory]
    ```
 
 2. **Install dependencies**
 
    ```bash
-   npm install
+   [Write the command to install project dependencies]
    ```
 
-3. **Start the development server**
+3. **Run the development server**
 
    ```bash
-   npm run dev
+   [Write the command to start the development server]
    ```
 
 4. **Open your browser**
 
-   Navigate to `http://localhost:5173` (or the port shown in your terminal)
+   [Write the URL and port where your application runs]
 
-## 📜 Available Scripts
+---
 
-- `npm run dev` - Start the development server
-- `npm run build` - Build the project for production
-- `npm run lint` - Run ESLint for code quality checks
-- `npm run preview` - Preview the production build locally
+## Git Workflow & Branching Strategy
 
-## 🏗️ Project Structure
+### Branches Used
+
+- **`main`** - Production-ready code
+- **`develop`** - Integration branch for features
+- **`feature/create-event`** - [Description of feature]
+- **`feature/event-list`** - [Description of feature]
+- **`feature/event-filter`** - [Description of feature]
+- **`feature/mark-attended`** - [Description of feature]
+- **`feature/edit-delete`** - [Description of feature]
+
+### Commit Convention
+
+We followed the **Conventional Commits** specification:
+
+- `feat:` - New features
+- `fix:` - Bug fixes
+- `docs:` - Documentation updates
+- `style:` - Code formatting, UI styling
+- `refactor:` - Code refactoring
+
+### Pull Request Workflow
+
+1. Create feature branch from `develop`
+2. Implement feature with atomic commits
+3. Push branch to GitHub
+4. Create Pull Request to `develop`
+5. Team reviews and provides feedback
+6. Merge after approval
+7. Delete feature branch
+
+### Merge Conflicts Resolved
+
+[Document conflicts here]
+
+**Example:**
+
+- **Conflict:** Merge conflict in `App.tsx` when merging `feature/event-list` into `develop`
+- **Files Affected:** `src/App.tsx`
+- **Cause:** Multiple members edited event state management
+- **Resolution:** [Describe how resolved]
+- **Resolved By:** [Team Member Name]
+
+---
+
+## Project Structure
 
 ```
 event-manager/
 ├── public/
 ├── src/
 │   ├── components/
-│   │   └── EventForm.tsx
-│   ├── types/
-│   │   └── index.ts
+│   │   ├── EventForm.tsx
+│   │   ├── EventList.tsx
+│   │   ├── EventCard.tsx
+│   │   └── FilterButtons.tsx
 │   ├── App.tsx
-│   ├── App.css
-│   ├── index.css
-│   └── main.tsx
-├── index.html
+│   ├── main.tsx
+│   └── App.css
 ├── package.json
-├── vite.config.ts
-├── tsconfig.json
-├── tsconfig.app.json
-├── tsconfig.node.json
-├── eslint.config.js
-├── Group_2_Instructions.md
-├── Group_2_README.md
 └── README.md
 ```
 
-## 🎨 Design Features
+---
 
-- **Gradient Backgrounds**: Beautiful blue-to-indigo gradients
-- **Glassmorphism**: Semi-transparent cards with backdrop blur
-- **Hover Effects**: Smooth transitions and transforms on interaction
-- **Modern Typography**: Gradient text effects for headings
-- **Card-based Layout**: Clean, organized event display
-- **Responsive Grid**: Adapts to different screen sizes
+## Screenshots
 
-## 📝 Usage
+[Add screenshots of your application here]
 
-1. **Adding Events**: Fill out the form on the left with event details
-2. **Viewing Events**: See all upcoming events displayed on the right
-3. **Event Information**: Each event shows title, date, time, and location
+---
 
-## 🔧 Development
+## Challenges & Learnings
 
-### Code Style
+**Challenges:**
 
-- Uses ESLint for code linting
-- TypeScript for type checking
-- Prettier for code formatting (if configured)
+- [Describe challenges faced]
 
-### Adding New Features
+**Key Learnings:**
 
-1. Create components in `src/components/`
-2. Define types in `src/types/index.ts`
-3. Update state management in `App.tsx`
-4. Style with Tailwind CSS classes
+- [What did the team learn about Git workflow?]
+- [What did the team learn about collaboration?]
 
-## 🤝 Contributing
+---
 
-This is a group project with the following team members:
+## Repository Links
 
-- **Catigan, Andrei William** - Event Status Management
-- **Concoles, Cyril Jade** - Edit Event Details & Delete Events
-- **Moreno, Radz Ponce** - Event List Display
-- **Mosquera, Gabriel** - Event Creation
-- **Oreiro, Genesis Ar** - Event Details and Filtering
+- **Organization:** https://github.com/csci151-eventwise-org
+- **Repository:** https://github.com/csci151-eventwise-org/event-manager
 
-## 📄 License
+---
 
-This project is private and intended for educational purposes.
+## Contributors
 
-## 🙋 Support
+**Group 2 - CSci 151 Event Driven Programming**
 
-For questions or issues, please contact the development team or create an issue in the repository.
+- Boyles, Christian Earl James - @username
+- Catigan, Andrei William - @username
+- Concoles, Cyril Jade - @username
+- Moreno, Radz Ponce - @username
+- Mosquera, Gabriel - @username
+- Oreiro, Genesis Ar - @username
+
+**Course Professors:**
+
+- Mr. Jomari Joseph A. Barrera
+- Mr. Kyle Anthony F. Nierras
+
+**Institution:** Visayas State University - Department of Computer Science and Technology
+
+---
+
+**Last Updated:** [07/04/2026]
