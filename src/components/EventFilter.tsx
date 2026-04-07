@@ -1,54 +1,11 @@
-import type { AppEvent } from "../types/index";
-
 export type EventFilterType = "all" | "past" | "current" | "upcoming";
 
 interface EventFilterProps {
-  events: AppEvent[];
   filter: EventFilterType;
   onFilterChange: (filter: EventFilterType) => void;
 }
 
-const isPast = (dateStr: string) => {
-  const today = new Date();
-  const eventDate = new Date(dateStr);
-  // Compare only the date part (ignore time)
-  const todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-  const eventDateOnly = new Date(eventDate.getFullYear(), eventDate.getMonth(), eventDate.getDate());
-  return eventDateOnly < todayDate;
-};
-
-const isCurrent = (dateStr: string) => {
-  const today = new Date();
-  const eventDate = new Date(dateStr);
-  const todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-  const eventDateOnly = new Date(eventDate.getFullYear(), eventDate.getMonth(), eventDate.getDate());
-  return eventDateOnly.getTime() === todayDate.getTime();
-};
-
-const isUpcoming = (dateStr: string) => {
-  const today = new Date();
-  const eventDate = new Date(dateStr);
-  const todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-  const eventDateOnly = new Date(eventDate.getFullYear(), eventDate.getMonth(), eventDate.getDate());
-  return eventDateOnly > todayDate;
-};
-
-export const EventFilter: React.FC<EventFilterProps> = ({ events, filter, onFilterChange }) => {
-  const getFilteredEvents = () => {
-    switch (filter) {
-      case "past":
-        return events.filter(e => isPast(e.date));
-      case "current":
-        return events.filter(e => isCurrent(e.date));
-      case "upcoming":
-        return events.filter(e => isUpcoming(e.date));
-      default:
-        return events;
-    }
-  };
-
-  const filteredEvents = getFilteredEvents();
-
+export const EventFilter: React.FC<EventFilterProps> = ({ filter, onFilterChange }) => {
   return (
     <div>
       <div className="mb-4 flex gap-2">
@@ -93,13 +50,6 @@ export const EventFilter: React.FC<EventFilterProps> = ({ events, filter, onFilt
           Upcoming
         </button>
       </div>
-      <ul>
-        {filteredEvents.map(event => (
-          <li key={event.id}>
-            <strong>{event.title}</strong> - {event.date} {event.time} @ {event.location}
-          </li>
-        ))}
-      </ul>
     </div>
   );
 };
