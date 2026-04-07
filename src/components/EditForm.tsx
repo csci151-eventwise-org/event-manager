@@ -129,7 +129,7 @@ export const EditForm: React.FC<EditFormProps> = ({
             <textarea
               id="description"
               name="description"
-              value={formData.description}
+              value={formData.description || ""}
               onChange={handleChange}
               placeholder="Update event details"
               className="min-h-[80px] w-full rounded-lg border border-gray-300 px-3 py-2 text-sm transition-all focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20"

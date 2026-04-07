@@ -2,7 +2,6 @@ import type { AppEvent } from "../types";
 import { DeleteButton } from "./DeleteButton";
 import { useState } from "react";
 
-// Combine the props from both branches
 interface EventListProps {
 	events: AppEvent[];
 	onToggleStatus: (id: string) => void;
@@ -33,7 +32,6 @@ export const EventList = ({ events, onToggleStatus, onEdit, onDelete }: EventLis
 		setExpandedEventId((prev) => (prev === eventId ? null : eventId));
 	};
 
-    // We just sort here, filtering is handled by the EventFilter component now!
 	const sortedEvents = [...events].sort((a, b) => getEventTimestamp(a) - getEventTimestamp(b));
 
 	if (sortedEvents.length === 0) {
@@ -68,7 +66,7 @@ export const EventList = ({ events, onToggleStatus, onEdit, onDelete }: EventLis
 						tabIndex={0}
 						role="button"
 						aria-expanded={expandedEventId === event.id}
-						className={`rounded-lg border px-4 py-3 transition-colors ${
+						className={`rounded-lg border px-4 py-3 transition-colors cursor-pointer ${
                             event.isAttended ? 'border-green-300 bg-green-50' : 'border-gray-200 bg-gray-50 hover:bg-gray-100'
                         }`}
 					>
@@ -78,14 +76,12 @@ export const EventList = ({ events, onToggleStatus, onEdit, onDelete }: EventLis
 								<p className="mt-1 text-sm text-gray-600">{formatEventDate(event)}</p>
 							</div>
 							
-                            {/* Actions Container */}
 							<div className="flex items-center gap-2">
 								<span className="rounded-md bg-white px-2.5 py-1 text-xs font-medium text-gray-700 ring-1 ring-gray-200">
 									{event.location}
 								</span>
-                                
-                                {/* YOUR MARK AS ATTENDED BUTTON */}
-                                <button
+								
+								<button
                                     type="button"
 									onClick={(e) => {
 										e.stopPropagation();
@@ -100,7 +96,6 @@ export const EventList = ({ events, onToggleStatus, onEdit, onDelete }: EventLis
                                     {event.isAttended ? 'Completed ✓' : 'Mark as Attended'}
                                 </button>
 
-                                {/* TEAMMATE'S EDIT BUTTON */}
 								<button
 									type="button"
 									onClick={(e) => {
@@ -111,8 +106,7 @@ export const EventList = ({ events, onToggleStatus, onEdit, onDelete }: EventLis
 								>
 									Edit
 								</button>
-                                
-                                {/* TEAMMATE'S DELETE BUTTON */}
+								
 								<div onClick={(e) => e.stopPropagation()}>
 									<DeleteButton
 										eventTitle={event.title}
@@ -123,7 +117,7 @@ export const EventList = ({ events, onToggleStatus, onEdit, onDelete }: EventLis
 						</div>
 
 						{expandedEventId === event.id ? (
-							<p className="mt-3 text-sm text-gray-700">
+							<p className="mt-3 text-sm text-gray-700 border-t pt-2 border-gray-200/60">
 								{event.description || "No description provided."}
 							</p>
 						) : null}
