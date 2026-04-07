@@ -126,6 +126,7 @@ function App() {
             date: editingEvent.date,
             time: editingEvent.time,
             location: editingEvent.location,
+            description: editingEvent.description,
           }}
           onSubmit={handleSaveEdit}
           onCancel={() => setEditingEventId(null)}
