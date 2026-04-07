@@ -1,27 +1,46 @@
-import { useState } from "react"; // Kept useEffect from develop
-import { useEffect } from "react"; // Kept useEffect from develop
+import { useState, useEffect } from "react";
 import type { AppEvent, EventFormData } from "./types/index";
 import { EventForm } from "./components/EventForm";
 import { EventFilter } from "./components/EventFilter";
 import type { EventFilterType } from "./components/EventFilter";
 import { EventList } from "./components/EventList";
+import { EditForm } from "./components/EditForm";
 import "./App.css";
 
 function App() {
   const [events, setEvents] = useState<AppEvent[]>([]);
-  const [filter, setFilter] = useState<EventFilterType>("all"); // From develop
-  const [filteredEvents, setFilteredEvents] = useState<AppEvent[]>([]); // From develop
+  const [editingEventId, setEditingEventId] = useState<string | null>(null);
+  const [filter, setFilter] = useState<EventFilterType>("all");
+  const [filteredEvents, setFilteredEvents] = useState<AppEvent[]>([]);
 
   const handleCreateEvent = (formData: EventFormData) => {
     const newEvent: AppEvent = {
       ...formData,
-      id: crypto.randomUUID(), 
-      isAttended: false, 
+      id: crypto.randomUUID(),
+      isAttended: false,
     };
     setEvents((prev) => [...prev, newEvent]);
   };
 
-  // --- YOUR FEATURE LOGIC ---
+  const handleStartEdit = (event: AppEvent) => {
+    setEditingEventId(event.id);
+  };
+
+  const handleSaveEdit = (formData: EventFormData) => {
+    if (!editingEventId) return;
+    setEvents((prev) =>
+      prev.map((event) =>
+        event.id === editingEventId ? { ...event, ...formData } : event,
+      ),
+    );
+    setEditingEventId(null);
+  };
+
+  const handleDeleteEvent = (eventId: string) => {
+    setEvents((prev) => prev.filter((event) => event.id !== eventId));
+    setEditingEventId((prev) => (prev === eventId ? null : prev));
+  };
+
   const toggleEventStatus = (eventId: string) => {
     setEvents((prevEvents) =>
       prevEvents.map((event) =>
@@ -32,13 +51,10 @@ function App() {
     );
   };
 
-  // --- FILTER FEATURE LOGIC (from develop) ---
   const handleFilterChange = (newFilter: EventFilterType) => {
     setFilter(newFilter);
   };
 
-  // Update filteredEvents whenever events or filter changes
-  // Use the same logic as EventFilter for consistency
   function filterEvents(events: AppEvent[], filter: EventFilterType): AppEvent[] {
     const today = new Date();
     const todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
@@ -61,6 +77,8 @@ function App() {
   useEffect(() => {
     setFilteredEvents(filterEvents(events, filter));
   }, [events, filter]);
+
+  const editingEvent = events.find((event) => event.id === editingEventId);
 
   return (
     <div className="min-h-screen bg-slate-50 p-6 md:p-12 font-sans">
@@ -88,11 +106,31 @@ function App() {
                   onFilterChange={handleFilterChange}
                 />
               </div>
-              <EventList events={filteredEvents} onToggleStatus={toggleEventStatus} />
+              
+              {/* Combine all props into the EventList */}
+              <EventList 
+                events={filteredEvents} 
+                onToggleStatus={toggleEventStatus}
+                onEdit={handleStartEdit}
+                onDelete={handleDeleteEvent}
+              />
             </div>
           </div>
         </div>
       </div>
+
+      {editingEvent ? (
+        <EditForm
+          initialData={{
+            title: editingEvent.title,
+            date: editingEvent.date,
+            time: editingEvent.time,
+            location: editingEvent.location,
+          }}
+          onSubmit={handleSaveEdit}
+          onCancel={() => setEditingEventId(null)}
+        />
+      ) : null}
     </div>
   );
 }
