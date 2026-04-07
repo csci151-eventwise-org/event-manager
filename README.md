@@ -9,7 +9,7 @@ An event tracking application that helps users organize and manage their upcomin
 | Full Name               | Role      | GitHub Username | Assigned Atomic Task                                 |
 | ----------------------- | --------- | --------------- | ---------------------------------------------------- |
 | Catigan, Andrei William | Developer | @AndreiCatigan  | [Event Status Management], QA, PR Reviewer           |
-| Concoles, Cyril Jade    | Developer | @con-cyse       | [Edit Event Details & Delete Events], Lead Developer |
+| Concoles, Cyril Jade    | Developer | @con-cyse       | [Edit Event Details & Delete Events], QA             |
 | Moreno, Radz Ponce      | Developer | @donot4tmee     | [Event List Display], Bug fixer                      |
 | Mosquera, Gabriel       | Developer | @gabiXDpapi     | [Event Creation], Team Lead, PR Reviewer             |
 | Oreiro, Genesis Ar      | Developer | @nyx-garso      | [Event Details and Filtering], Bug fixer             |
@@ -151,11 +151,11 @@ event-manager/
 
 ### Conflict PT1
 
-![Conflict PT1](conflict%20pt1.png)
+![Conflict PT1](./public/conflictpt1.png)
 
 ### Conflict PT2
 
-![Conflict PT2](conflictpt2.png)
+![Conflict PT2](./public/conflictpt2.png)
 
 ---
 
@@ -187,13 +187,11 @@ event-manager/
 ## Contributors
 
 **Group 2 - CSci 151 Event Driven Programming**
-
-- Boyles, Christian Earl James - @username
-- Catigan, Andrei William - @username
-- Concoles, Cyril Jade - @username
-- Moreno, Radz Ponce - @username
-- Mosquera, Gabriel - @username
-- Oreiro, Genesis Ar - @username
+- Catigan, Andrei William - @AndreiCatigan
+- Concoles, Cyril Jade - @con-cyse
+- Moreno, Radz Ponce - @donot4tmee
+- Mosquera, Gabriel - @gabiXDpapi
+- Oreiro, Genesis Ar - @nyx-garso
 
 **Course Professors:**
 
