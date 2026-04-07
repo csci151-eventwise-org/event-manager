@@ -12,7 +12,7 @@ export interface Event {
   isCompleted: boolean; 
 }
 
-export default function App() {
+function App() {
   // We will set up a dummy event here just so the state exists (Andrei)
   const [events, setEvents] = useState<Event[]>([
     { 
