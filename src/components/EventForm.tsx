@@ -4,7 +4,6 @@ import type { EventFormData } from "../types";
 interface EventFormProps {
   initialData?: EventFormData;
   onSubmit: (data: EventFormData) => void;
-  submitButtonText?: string;
 }
 
 const defaultState: EventFormData = {
@@ -17,17 +16,13 @@ const defaultState: EventFormData = {
 export const EventForm: React.FC<EventFormProps> = ({
   initialData,
   onSubmit,
-  submitButtonText = "Create Event",
 }) => {
   const [formData, setFormData] = useState<EventFormData>(
     initialData || defaultState,
   );
 
-  // If initialData changes (e.g., when opening an edit modal), update the form
   useEffect(() => {
-    if (initialData) {
-      setFormData(initialData);
-    }
+    if (initialData) setFormData(initialData);
   }, [initialData]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,27 +33,24 @@ export const EventForm: React.FC<EventFormProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSubmit(formData);
-
-    // Only reset if we are creating a new event (no initialData)
-    if (!initialData) {
-      setFormData(defaultState);
-    }
+    if (!initialData) setFormData(defaultState);
   };
 
   return (
+    // Modern card: slight border, very subtle shadow, crisp white background
     <form
       onSubmit={handleSubmit}
-      className="bg-white/90 backdrop-blur-sm p-8 rounded-2xl shadow-2xl border border-white/20 max-w-md w-full hover:shadow-3xl transition-all duration-300"
+      className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 w-full max-w-md"
     >
-      <h2 className="text-3xl font-bold mb-6 text-gray-900 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+      <h2 className="text-xl font-semibold text-gray-900 mb-6">
         {initialData ? "Edit Event" : "Add New Event"}
       </h2>
 
-      <div className="space-y-6">
+      <div className="space-y-5">
         <div>
           <label
             htmlFor="title"
-            className="block text-sm font-semibold text-gray-700 mb-2"
+            className="block text-sm font-medium text-gray-700 mb-1"
           >
             Event Title
           </label>
@@ -69,8 +61,9 @@ export const EventForm: React.FC<EventFormProps> = ({
             required
             value={formData.title}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-3 border-2 focus:outline-none transition-all duration-200 bg-gray-50 focus:bg-white"
             placeholder="e.g., Department Meeting"
+            // Modern inputs: clear border, outline rings on focus
+            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20 transition-all"
           />
         </div>
 
@@ -78,7 +71,7 @@ export const EventForm: React.FC<EventFormProps> = ({
           <div>
             <label
               htmlFor="date"
-              className="block text-sm font-semibold text-gray-700 mb-2"
+              className="block text-sm font-medium text-gray-700 mb-1"
             >
               Date
             </label>
@@ -89,13 +82,13 @@ export const EventForm: React.FC<EventFormProps> = ({
               required
               value={formData.date}
               onChange={handleChange}
-              className="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-3 border-2 focus:outline-none transition-all duration-200 bg-gray-50 focus:bg-white"
+              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20 transition-all text-gray-600"
             />
           </div>
           <div>
             <label
               htmlFor="time"
-              className="block text-sm font-semibold text-gray-700 mb-2"
+              className="block text-sm font-medium text-gray-700 mb-1"
             >
               Time
             </label>
@@ -106,7 +99,7 @@ export const EventForm: React.FC<EventFormProps> = ({
               required
               value={formData.time}
               onChange={handleChange}
-              className="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-3 border-2 focus:outline-none transition-all duration-200 bg-gray-50 focus:bg-white"
+              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20 transition-all text-gray-600"
             />
           </div>
         </div>
@@ -114,7 +107,7 @@ export const EventForm: React.FC<EventFormProps> = ({
         <div>
           <label
             htmlFor="location"
-            className="block text-sm font-semibold text-gray-700 mb-2"
+            className="block text-sm font-medium text-gray-700 mb-1"
           >
             Location
           </label>
@@ -125,16 +118,17 @@ export const EventForm: React.FC<EventFormProps> = ({
             required
             value={formData.location}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-3 border-2 focus:outline-none transition-all duration-200 bg-gray-50 focus:bg-white"
             placeholder="e.g., Room 404"
+            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20 transition-all"
           />
         </div>
 
+        {/* Modern button: Solid color, slight hover state, no massive gradients unless intentional */}
         <button
           type="submit"
-          className="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+          className="w-full mt-2 rounded-lg bg-violet-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 transition-all"
         >
-          {submitButtonText}
+          {initialData ? "Save Changes" : "Create Event"}
         </button>
       </div>
     </form>
