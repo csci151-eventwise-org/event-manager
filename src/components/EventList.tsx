@@ -1,107 +1,54 @@
-<<<<<<< HEAD
-import type { AppEvent } from '../types/index';
-import EventCard from './EventCard';
-
-//ANDREI
-interface EventListProps {
-  events: AppEvent[];
-  onToggleStatus: (id: string) => void;
-}
-
-export default function EventList({ events, onToggleStatus }: EventListProps) {
-  // A nice fallback UI if there are no events to show (ANDREI)
-  if (events.length === 0) {
-    return <p className="text-gray-500 italic text-center p-8">No events found.</p>;
-  }
-  //Andrei
-  return (
-    //ANDREI
-    <div className="w-full space-y-4">
-      <h2 className="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Upcoming Events</h2>
-      
-      {/* This is where the magic happens: looping through the data */}
-      {events.map((event) => (
-        <EventCard 
-          key={event.id} 
-          event={event} 
-          onToggleStatus={onToggleStatus} 
-        />
-      ))}
-    </div>
-    //Andrei
-  );
-}
-=======
 import type { AppEvent } from "../types";
+import EventCard from "./EventCard";
 
+// 1. We combine both props: the events array AND your toggle function
 interface EventListProps {
-	events: AppEvent[];
+    events: AppEvent[];
+    onToggleStatus: (id: string) => void;
 }
 
 const getEventTimestamp = (event: AppEvent): number => {
-	return new Date(`${event.date}T${event.time}`).getTime();
+    return new Date(`${event.date}T${event.time}`).getTime();
 };
 
 const isUpcomingEvent = (event: AppEvent): boolean => {
-	return !event.isAttended;
+    return !event.isAttended;
 };
 
-const formatEventDate = (event: AppEvent): string => {
-	const date = new Date(`${event.date}T${event.time}`);
+// 2. We use their named export, but include your prop
+export const EventList = ({ events, onToggleStatus }: EventListProps) => {
+    const upcomingEvents = events
+        .filter(isUpcomingEvent)
+        .sort((a, b) => getEventTimestamp(a) - getEventTimestamp(b));
 
-	return new Intl.DateTimeFormat("en-US", {
-		weekday: "short",
-		month: "short",
-		day: "numeric",
-		year: "numeric",
-		hour: "numeric",
-		minute: "2-digit",
-	}).format(date);
+    if (upcomingEvents.length === 0) {
+        return (
+            <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+                <h2 className="mb-2 text-lg font-semibold text-gray-900">Upcoming Events</h2>
+                <p className="text-sm text-gray-500">No upcoming events yet. Add one using the form.</p>
+            </div>
+        );
+    }
+
+    return (
+        <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+            <div className="mb-4 flex items-center justify-between">
+                <h2 className="text-lg font-semibold text-gray-900">Upcoming Events</h2>
+                <span className="rounded-full bg-violet-100 px-3 py-1 text-xs font-medium text-violet-700">
+                    {upcomingEvents.length} total
+                </span>
+            </div>
+
+            {/* 3. We use your EventCard component inside their new layout! */}
+            <div className="space-y-3">
+                {upcomingEvents.map((event) => (
+                    <EventCard 
+                        key={event.id} 
+                        event={event} 
+                        onToggleStatus={onToggleStatus} 
+                    />
+                ))}
+            </div>
+        </div>
+    );
 };
-
-export const EventList = ({ events }: EventListProps) => {
-	// Keep filtering deterministic during render by using event status.
-	const upcomingEvents = events
-		.filter(isUpcomingEvent)
-		.sort((a, b) => getEventTimestamp(a) - getEventTimestamp(b));
-
-	if (upcomingEvents.length === 0) {
-		return (
-			<div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-				<h2 className="mb-2 text-lg font-semibold text-gray-900">Upcoming Events</h2>
-				<p className="text-sm text-gray-500">No upcoming events yet. Add one using the form.</p>
-			</div>
-		);
-	}
-
-	return (
-		<div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-			<div className="mb-4 flex items-center justify-between">
-				<h2 className="text-lg font-semibold text-gray-900">Upcoming Events</h2>
-				<span className="rounded-full bg-violet-100 px-3 py-1 text-xs font-medium text-violet-700">
-					{upcomingEvents.length} total
-				</span>
-			</div>
-
-			<ul className="space-y-3">
-				{upcomingEvents.map((event) => (
-					<li
-						key={event.id}
-						className="rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 transition-colors hover:bg-gray-100"
-					>
-						<div className="flex flex-wrap items-start justify-between gap-3">
-							<div>
-								<h3 className="text-sm font-semibold text-gray-900">{event.title}</h3>
-								<p className="mt-1 text-sm text-gray-600">{formatEventDate(event)}</p>
-							</div>
-							<span className="rounded-md bg-white px-2.5 py-1 text-xs font-medium text-gray-700 ring-1 ring-gray-200">
-								{event.location}
-							</span>
-						</div>
-					</li>
-				))}
-			</ul>
-		</div>
-	);
-};
->>>>>>> develop

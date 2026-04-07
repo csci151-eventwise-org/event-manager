@@ -1,28 +1,22 @@
 import { useState } from "react";
-import EventList from "./components/EventList";
+// 1. Update to the named import with curly braces
+import { EventList } from "./components/EventList";
 import type { AppEvent, EventFormData } from "./types/index";
 import { EventForm } from "./components/EventForm";
-<<<<<<< HEAD
 import "./App.css";
-=======
-import { EventList } from "./components/EventList";
->>>>>>> develop
 
 function App() {
-  // 1. We use the team's official AppEvent type now
   const [events, setEvents] = useState<AppEvent[]>([]);
 
-  // 2. Your teammate's event creation logic
   const handleCreateEvent = (formData: EventFormData) => {
     const newEvent: AppEvent = {
       ...formData,
       id: crypto.randomUUID(), 
-      isAttended: false, // The team already set up your default status!
+      isAttended: false, 
     };
     setEvents((prev) => [...prev, newEvent]);
   };
 
-  // 3. Your core logic, updated to use isAttended instead of isCompleted
   const toggleEventStatus = (eventId: string) => {
     setEvents((prevEvents) =>
       prevEvents.map((event) =>
@@ -51,17 +45,8 @@ function App() {
           </div>
 
           <div className="md:col-span-7 lg:col-span-8">
-<<<<<<< HEAD
-            <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">
-                Upcoming Events
-              </h2>
-              {/* 4. We drop your component right into the placeholder they left! */}
-              <EventList events={events} onToggleStatus={toggleEventStatus} />
-            </div>
-=======
-            <EventList events={events} />
->>>>>>> develop
+            {/* 2. Simply render the component with your props */}
+            <EventList events={events} onToggleStatus={toggleEventStatus} />
           </div>
         </div>
       </div>
