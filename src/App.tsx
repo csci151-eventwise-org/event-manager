@@ -1,7 +1,10 @@
-import { useState, useEffect } from "react"; // Kept useEffect from develop
-import { EventList } from "./components/EventList"; // Kept your import
-import type { AppEvent, EventFormData, EventFilterType } from "./types/index"; // Added EventFilterType
+import { useState } from "react"; // Kept useEffect from develop
+import { useEffect } from "react"; // Kept useEffect from develop
+import type { AppEvent, EventFormData } from "./types/index";
 import { EventForm } from "./components/EventForm";
+import { EventFilter } from "./components/EventFilter";
+import type { EventFilterType } from "./components/EventFilter";
+import { EventList } from "./components/EventList";
 import "./App.css";
 
 function App() {
@@ -34,11 +37,13 @@ function App() {
     setFilter(newFilter);
   };
 
+  // Update filteredEvents whenever events or filter changes
+  // Use the same logic as EventFilter for consistency
   function filterEvents(events: AppEvent[], filter: EventFilterType): AppEvent[] {
     const today = new Date();
     const todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
     return events.filter((e) => {
-      const eventDate = new Date(e.date);
+      const eventDate = new Date(`${e.date}T${e.time}`);
       const eventDateOnly = new Date(eventDate.getFullYear(), eventDate.getMonth(), eventDate.getDate());
       switch (filter) {
         case "past":
@@ -75,8 +80,16 @@ function App() {
           </div>
 
           <div className="md:col-span-7 lg:col-span-8">
-            {/* RESOLUTION: We pass filteredEvents and YOUR toggle function */}
-            <EventList events={filteredEvents} onToggleStatus={toggleEventStatus} />
+            <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+              <div className="mb-4">
+                <EventFilter
+                  events={events}
+                  filter={filter}
+                  onFilterChange={handleFilterChange}
+                />
+              </div>
+              <EventList events={filteredEvents} onToggleStatus={toggleEventStatus} />
+            </div>
           </div>
         </div>
       </div>
