@@ -1,5 +1,6 @@
 import type { Event } from '../App';
 
+//ANDREI
 interface EventCardProps {
   event: Event;
   // This is the function we created in App.tsx!
@@ -7,7 +8,9 @@ interface EventCardProps {
 }
 
 export default function EventCard({ event, onToggleStatus }: EventCardProps) {
-  return (
+  
+    return (
+    //ANDREI
     // The card border and background change color if isCompleted is true
     <div className={`p-5 mb-4 border rounded-lg shadow-sm transition-all duration-300 ${
       event.isCompleted ? 'border-green-500 bg-green-50' : 'border-gray-200 bg-white'
@@ -34,5 +37,6 @@ export default function EventCard({ event, onToggleStatus }: EventCardProps) {
         </button>
       </div>
     </div>
+    //ANDREI
   );
 }

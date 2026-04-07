@@ -2,6 +2,7 @@ import { useState } from 'react'
 import EventList from './components/EventList';
 import './App.css'
 
+//Andrei
 export interface Event {
   id: string;
   title: string;
@@ -41,7 +42,8 @@ function App() {
     <div className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-3xl mx-auto">
         <h1 className="text-3xl font-bold text-gray-900 mb-8">Event Manager</h1>
-        {/* We will add the EventList component here in the next commit! */}
+        {/* We will add the EventList component here in the next commit! (ANDREI)*/}
+        <EventList events={events} onToggleStatus={toggleEventStatus} />
       </div>
     </div>
   );
