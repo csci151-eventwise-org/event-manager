@@ -81,11 +81,11 @@ An event tracking application that helps users organize and manage their upcomin
 
 - **`main`** - Production-ready code
 - **`develop`** - Integration branch for features
-- **`feature/create-event`** - [Description of feature]
-- **`feature/event-list`** - [Description of feature]
-- **`feature/event-filter`** - [Description of feature]
-- **`feature/mark-attended`** - [Description of feature]
-- **`feature/edit-delete`** - [Description of feature]
+- **`feature/create-event`** - Event creation form with title, date, time, and location inputs
+- **`feature/event-list`** - Display all events chronologically with event details
+- **`feature/event-filter`** - Filter events by status (upcoming/past/all)
+- **`feature/mark-attended`** - Toggle event attendance status and update UI
+- **`feature/edit-delete`** - Edit event details and delete events with confirmation
 
 ### Commit Convention
 
