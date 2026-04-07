@@ -2,10 +2,13 @@ import { useState, useEffect } from "react"; // Kept useEffect from develop
 import { EventList } from "./components/EventList"; // Kept your import
 import type { AppEvent, EventFormData, EventFilterType } from "./types/index"; // Added EventFilterType
 import { EventForm } from "./components/EventForm";
+import { EventList } from "./components/EventList";
+import { EditForm } from "./components/EditForm";
 import "./App.css";
 
 function App() {
   const [events, setEvents] = useState<AppEvent[]>([]);
+  const [editingEventId, setEditingEventId] = useState<string | null>(null);
   const [filter, setFilter] = useState<EventFilterType>("all"); // From develop
   const [filteredEvents, setFilteredEvents] = useState<AppEvent[]>([]); // From develop
 
@@ -17,6 +20,23 @@ function App() {
     };
     setEvents((prev) => [...prev, newEvent]);
   };
+
+  const handleStartEdit = (event: AppEvent) => {
+    setEditingEventId(event.id);
+  };
+
+  const handleSaveEdit = (formData: EventFormData) => {
+    if (!editingEventId) return;
+
+    setEvents((prev) =>
+      prev.map((event) =>
+        event.id === editingEventId ? { ...event, ...formData } : event,
+      ),
+    );
+    setEditingEventId(null);
+  };
+
+  const editingEvent = events.find((event) => event.id === editingEventId);
 
   // --- YOUR FEATURE LOGIC ---
   const toggleEventStatus = (eventId: string) => {
@@ -75,11 +95,25 @@ function App() {
           </div>
 
           <div className="md:col-span-7 lg:col-span-8">
+            <EventList events={events} onEdit={handleStartEdit} />
             {/* RESOLUTION: We pass filteredEvents and YOUR toggle function */}
             <EventList events={filteredEvents} onToggleStatus={toggleEventStatus} />
           </div>
         </div>
       </div>
+
+      {editingEvent ? (
+        <EditForm
+          initialData={{
+            title: editingEvent.title,
+            date: editingEvent.date,
+            time: editingEvent.time,
+            location: editingEvent.location,
+          }}
+          onSubmit={handleSaveEdit}
+          onCancel={() => setEditingEventId(null)}
+        />
+      ) : null}
     </div>
   );
 }
