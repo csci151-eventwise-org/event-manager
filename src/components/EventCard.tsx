@@ -1,8 +1,8 @@
-import type { Event } from '../App';
+import type { AppEvent } from '../types/index';
 
 //ANDREI
 interface EventCardProps {
-  event: Event;
+  event: AppEvent;
   // This is the function we created in App.tsx!
   onToggleStatus: (id: string) => void; 
 }
@@ -13,7 +13,7 @@ export default function EventCard({ event, onToggleStatus }: EventCardProps) {
     //ANDREI
     // The card border and background change color if isCompleted is true
     <div className={`p-5 mb-4 border rounded-lg shadow-sm transition-all duration-300 ${
-      event.isCompleted ? 'border-green-500 bg-green-50' : 'border-gray-200 bg-white'
+      event.isAttended ? 'border-green-500 bg-green-50' : 'border-gray-200 bg-white'
     }`}>
       <div className="flex justify-between items-start">
         <div>
@@ -28,12 +28,12 @@ export default function EventCard({ event, onToggleStatus }: EventCardProps) {
         <button
           onClick={() => onToggleStatus(event.id)}
           className={`px-4 py-2 rounded-md font-medium transition-colors duration-200 shadow-sm ${
-            event.isCompleted
+            event.isAttended
               ? 'bg-green-600 text-white hover:bg-green-700'
               : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
           }`}
         >
-          {event.isCompleted ? 'Completed ✓' : 'Mark as Attended'}
+          {event.isAttended ? 'Completed ✓' : 'Mark as Attended'}
         </button>
       </div>
     </div>

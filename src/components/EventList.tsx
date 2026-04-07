@@ -1,9 +1,9 @@
-import type { Event } from '../App';
+import type { AppEvent } from '../types/index';
 import EventCard from './EventCard';
 
 //ANDREI
 interface EventListProps {
-  events: Event[];
+  events: AppEvent[];
   onToggleStatus: (id: string) => void;
 }
 
