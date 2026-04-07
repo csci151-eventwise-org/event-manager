@@ -1,27 +1,7 @@
 import { useState, useEffect } from "react";
 import type { AppEvent, EventFormData } from "./types/index";
 import { EventForm } from "./components/EventForm";
-import { EventFilter } from "./components/EventFilter";
-import type { EventFilterType } from "./components/EventFilter";
-
-// Simple event list display for testing filter
-function EventList({ events }: { events: AppEvent[] }) {
-  if (events.length === 0) {
-    return <div className="text-slate-400">No events to display.</div>;
-  }
-  return (
-    <ul className="space-y-2">
-      {events.map((event) => (
-        <li key={event.id} className="border rounded p-2">
-          <div className="font-semibold">{event.title}</div>
-          <div className="text-sm text-slate-600">
-            {event.date} {event.time} @ {event.location}
-          </div>
-        </li>
-      ))}
-    </ul>
-  );
-}
+import { EventList } from "./components/EventList";
 
 function App() {
   const [events, setEvents] = useState<AppEvent[]>([]);
@@ -86,19 +66,7 @@ function App() {
           </div>
           {/* Right Column: List takes up remaining columns */}
           <div className="md:col-span-7 lg:col-span-8">
-            <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">
-                Upcoming Events
-              </h2>
-              <EventFilter
-                events={events}
-                filter={filter}
-                onFilterChange={handleFilterChange}
-              />
-              <div className="mt-6">
-                <EventList events={filteredEvents} />
-              </div>
-            </div>
+            <EventList events={events} />
           </div>
         </div>
       </div>
