@@ -36,7 +36,7 @@ export const EventList = ({ events, onToggleStatus, onEdit, onDelete }: EventLis
 
 	if (sortedEvents.length === 0) {
 		return (
-			<div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+			<div className="p-1">
 				<h2 className="mb-2 text-lg font-semibold text-gray-900">Events</h2>
 				<p className="text-sm text-gray-500">No events found. Add one using the form.</p>
 			</div>
@@ -44,7 +44,7 @@ export const EventList = ({ events, onToggleStatus, onEdit, onDelete }: EventLis
 	}
 
 	return (
-		<div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+		<div>
 			<div className="mb-4 flex items-center justify-between">
 				<h2 className="text-lg font-semibold text-gray-900">Events</h2>
 				<span className="rounded-full bg-violet-100 px-3 py-1 text-xs font-medium text-violet-700">
