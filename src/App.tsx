@@ -2,9 +2,11 @@ import { useState } from "react";
 import type { AppEvent, EventFormData } from "./types/index";
 import { EventForm } from "./components/EventForm";
 import { EventList } from "./components/EventList";
+import { EditForm } from "./components/EditForm";
 
 function App() {
   const [events, setEvents] = useState<AppEvent[]>([]);
+  const [editingEventId, setEditingEventId] = useState<string | null>(null);
 
   const handleCreateEvent = (formData: EventFormData) => {
     const newEvent: AppEvent = {
@@ -15,6 +17,23 @@ function App() {
 
     setEvents((prev) => [...prev, newEvent]);
   };
+
+  const handleStartEdit = (event: AppEvent) => {
+    setEditingEventId(event.id);
+  };
+
+  const handleSaveEdit = (formData: EventFormData) => {
+    if (!editingEventId) return;
+
+    setEvents((prev) =>
+      prev.map((event) =>
+        event.id === editingEventId ? { ...event, ...formData } : event,
+      ),
+    );
+    setEditingEventId(null);
+  };
+
+  const editingEvent = events.find((event) => event.id === editingEventId);
 
   return (
     // Use a subtle background color for the main canvas
@@ -39,10 +58,23 @@ function App() {
 
           {/* Right Column: List takes up remaining columns */}
           <div className="md:col-span-7 lg:col-span-8">
-            <EventList events={events} />
+            <EventList events={events} onEdit={handleStartEdit} />
           </div>
         </div>
       </div>
+
+      {editingEvent ? (
+        <EditForm
+          initialData={{
+            title: editingEvent.title,
+            date: editingEvent.date,
+            time: editingEvent.time,
+            location: editingEvent.location,
+          }}
+          onSubmit={handleSaveEdit}
+          onCancel={() => setEditingEventId(null)}
+        />
+      ) : null}
     </div>
   );
 }

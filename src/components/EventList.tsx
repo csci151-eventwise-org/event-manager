@@ -2,6 +2,7 @@ import type { AppEvent } from "../types";
 
 interface EventListProps {
 	events: AppEvent[];
+	onEdit: (event: AppEvent) => void;
 }
 
 const getEventTimestamp = (event: AppEvent): number => {
@@ -25,7 +26,7 @@ const formatEventDate = (event: AppEvent): string => {
 	}).format(date);
 };
 
-export const EventList = ({ events }: EventListProps) => {
+export const EventList = ({ events, onEdit }: EventListProps) => {
 	// Keep filtering deterministic during render by using event status.
 	const upcomingEvents = events
 		.filter(isUpcomingEvent)
@@ -60,9 +61,18 @@ export const EventList = ({ events }: EventListProps) => {
 								<h3 className="text-sm font-semibold text-gray-900">{event.title}</h3>
 								<p className="mt-1 text-sm text-gray-600">{formatEventDate(event)}</p>
 							</div>
-							<span className="rounded-md bg-white px-2.5 py-1 text-xs font-medium text-gray-700 ring-1 ring-gray-200">
-								{event.location}
-							</span>
+							<div className="flex items-center gap-2">
+								<span className="rounded-md bg-white px-2.5 py-1 text-xs font-medium text-gray-700 ring-1 ring-gray-200">
+									{event.location}
+								</span>
+								<button
+									type="button"
+									onClick={() => onEdit(event)}
+									className="rounded-md bg-violet-600 px-3 py-1.5 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2"
+								>
+									Edit
+								</button>
+							</div>
 						</div>
 					</li>
 				))}
