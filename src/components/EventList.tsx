@@ -8,6 +8,10 @@ const getEventTimestamp = (event: AppEvent): number => {
 	return new Date(`${event.date}T${event.time}`).getTime();
 };
 
+const isUpcomingEvent = (event: AppEvent): boolean => {
+	return !event.isAttended;
+};
+
 const formatEventDate = (event: AppEvent): string => {
 	const date = new Date(`${event.date}T${event.time}`);
 
@@ -22,8 +26,9 @@ const formatEventDate = (event: AppEvent): string => {
 };
 
 export const EventList = ({ events }: EventListProps) => {
+	// Keep filtering deterministic during render by using event status.
 	const upcomingEvents = events
-		.filter((event) => !event.isAttended)
+		.filter(isUpcomingEvent)
 		.sort((a, b) => getEventTimestamp(a) - getEventTimestamp(b));
 
 	if (upcomingEvents.length === 0) {
