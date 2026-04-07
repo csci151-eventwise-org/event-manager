@@ -2,7 +2,11 @@ import { useState } from "react";
 import EventList from "./components/EventList";
 import type { AppEvent, EventFormData } from "./types/index";
 import { EventForm } from "./components/EventForm";
+<<<<<<< HEAD
 import "./App.css";
+=======
+import { EventList } from "./components/EventList";
+>>>>>>> develop
 
 function App() {
   // 1. We use the team's official AppEvent type now
@@ -47,6 +51,7 @@ function App() {
           </div>
 
           <div className="md:col-span-7 lg:col-span-8">
+<<<<<<< HEAD
             <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
               <h2 className="text-lg font-semibold text-gray-900 mb-4">
                 Upcoming Events
@@ -54,6 +59,9 @@ function App() {
               {/* 4. We drop your component right into the placeholder they left! */}
               <EventList events={events} onToggleStatus={toggleEventStatus} />
             </div>
+=======
+            <EventList events={events} />
+>>>>>>> develop
           </div>
         </div>
       </div>
