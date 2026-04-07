@@ -7,14 +7,18 @@ interface EventCardProps {
   onToggleStatus: (id: string) => void; 
 }
 
+import { useState } from "react";
+
 export default function EventCard({ event, onToggleStatus }: EventCardProps) {
-  
-    return (
-    //ANDREI
-    // The card border and background change color if isCompleted is true
-    <div className={`p-5 mb-4 border rounded-lg shadow-sm transition-all duration-300 ${
-      event.isAttended ? 'border-green-500 bg-green-50' : 'border-gray-200 bg-white'
-    }`}>
+  const [showDescription, setShowDescription] = useState(false);
+  return (
+    <div
+      className={`p-5 mb-4 border rounded-lg shadow-sm transition-all duration-300 ${
+        event.isAttended ? 'border-green-500 bg-green-50' : 'border-gray-200 bg-white'
+      }`}
+      onClick={() => setShowDescription((prev) => !prev)}
+      style={{ cursor: "pointer" }}
+    >
       <div className="flex justify-between items-start">
         <div>
           <h3 className="text-xl font-bold text-gray-800">{event.title}</h3>
@@ -23,10 +27,11 @@ export default function EventCard({ event, onToggleStatus }: EventCardProps) {
             <p>📍 {event.location}</p>
           </div>
         </div>
-        
-        {/* Your Feature: The Toggle Button */}
         <button
-          onClick={() => onToggleStatus(event.id)}
+          onClick={e => {
+            e.stopPropagation();
+            onToggleStatus(event.id);
+          }}
           className={`px-4 py-2 rounded-md font-medium transition-colors duration-200 shadow-sm ${
             event.isAttended
               ? 'bg-green-600 text-white hover:bg-green-700'
@@ -36,7 +41,11 @@ export default function EventCard({ event, onToggleStatus }: EventCardProps) {
           {event.isAttended ? 'Completed ✓' : 'Mark as Attended'}
         </button>
       </div>
+      {showDescription && event.description && (
+        <div className="mt-3 rounded bg-violet-50 px-3 py-2 text-sm text-violet-900 border border-violet-100">
+          {event.description}
+        </div>
+      )}
     </div>
-    //ANDREI
   );
 }

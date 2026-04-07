@@ -11,6 +11,7 @@ const defaultState: EventFormData = {
   date: "",
   time: "",
   location: "",
+  description: "",
 };
 
 export const EventForm: React.FC<EventFormProps> = ({
@@ -25,7 +26,8 @@ export const EventForm: React.FC<EventFormProps> = ({
     if (initialData) setFormData(initialData);
   }, [initialData]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -120,6 +122,23 @@ export const EventForm: React.FC<EventFormProps> = ({
             onChange={handleChange}
             placeholder="e.g., Room 404"
             className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20 transition-all"
+          />
+        </div>
+
+        <div>
+          <label
+            htmlFor="description"
+            className="block text-sm font-medium text-gray-700 mb-1"
+          >
+            Description
+          </label>
+          <textarea
+            id="description"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            placeholder="Event details, agenda, etc."
+            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20 transition-all min-h-[60px]"
           />
         </div>
 

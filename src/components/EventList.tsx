@@ -1,8 +1,10 @@
 import type { AppEvent } from "../types";
 import { DeleteButton } from "./DeleteButton";
 
+// Combine the props from both branches
 interface EventListProps {
 	events: AppEvent[];
+	onToggleStatus: (id: string) => void;
 	onEdit: (event: AppEvent) => void;
 	onDelete: (id: string) => void;
 }
@@ -11,13 +13,8 @@ const getEventTimestamp = (event: AppEvent): number => {
 	return new Date(`${event.date}T${event.time}`).getTime();
 };
 
-const isUpcomingEvent = (event: AppEvent): boolean => {
-	return !event.isAttended;
-};
-
 const formatEventDate = (event: AppEvent): string => {
 	const date = new Date(`${event.date}T${event.time}`);
-
 	return new Intl.DateTimeFormat("en-US", {
 		weekday: "short",
 		month: "short",
@@ -28,16 +25,15 @@ const formatEventDate = (event: AppEvent): string => {
 	}).format(date);
 };
 
-export const EventList = ({ events, onEdit, onDelete }: EventListProps) => {
-	const upcomingEvents = events
-		.filter(isUpcomingEvent)
-		.sort((a, b) => getEventTimestamp(a) - getEventTimestamp(b));
+export const EventList = ({ events, onToggleStatus, onEdit, onDelete }: EventListProps) => {
+    // We just sort here, filtering is handled by the EventFilter component now!
+	const sortedEvents = [...events].sort((a, b) => getEventTimestamp(a) - getEventTimestamp(b));
 
-	if (upcomingEvents.length === 0) {
+	if (sortedEvents.length === 0) {
 		return (
 			<div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-				<h2 className="mb-2 text-lg font-semibold text-gray-900">Upcoming Events</h2>
-				<p className="text-sm text-gray-500">No upcoming events yet. Add one using the form.</p>
+				<h2 className="mb-2 text-lg font-semibold text-gray-900">Events</h2>
+				<p className="text-sm text-gray-500">No events found. Add one using the form.</p>
 			</div>
 		);
 	}
@@ -45,27 +41,46 @@ export const EventList = ({ events, onEdit, onDelete }: EventListProps) => {
 	return (
 		<div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
 			<div className="mb-4 flex items-center justify-between">
-				<h2 className="text-lg font-semibold text-gray-900">Upcoming Events</h2>
+				<h2 className="text-lg font-semibold text-gray-900">Events</h2>
 				<span className="rounded-full bg-violet-100 px-3 py-1 text-xs font-medium text-violet-700">
-					{upcomingEvents.length} total
+					{sortedEvents.length} total
 				</span>
 			</div>
 
 			<ul className="space-y-3">
-				{upcomingEvents.map((event) => (
+				{sortedEvents.map((event) => (
 					<li
 						key={event.id}
-						className="rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 transition-colors hover:bg-gray-100"
+						className={`rounded-lg border px-4 py-3 transition-colors ${
+                            event.isAttended ? 'border-green-300 bg-green-50' : 'border-gray-200 bg-gray-50 hover:bg-gray-100'
+                        }`}
 					>
 						<div className="flex flex-wrap items-start justify-between gap-3">
 							<div>
 								<h3 className="text-sm font-semibold text-gray-900">{event.title}</h3>
 								<p className="mt-1 text-sm text-gray-600">{formatEventDate(event)}</p>
 							</div>
+							
+                            {/* Actions Container */}
 							<div className="flex items-center gap-2">
 								<span className="rounded-md bg-white px-2.5 py-1 text-xs font-medium text-gray-700 ring-1 ring-gray-200">
 									{event.location}
 								</span>
+                                
+                                {/* YOUR MARK AS ATTENDED BUTTON */}
+                                <button
+                                    type="button"
+                                    onClick={() => onToggleStatus(event.id)}
+                                    className={`rounded-md px-3 py-1.5 text-xs font-semibold shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+                                        event.isAttended
+                                            ? 'bg-green-600 text-white hover:bg-green-700 focus:ring-green-500'
+                                            : 'bg-white text-gray-700 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:ring-gray-500'
+                                    }`}
+                                >
+                                    {event.isAttended ? 'Completed ✓' : 'Mark as Attended'}
+                                </button>
+
+                                {/* TEAMMATE'S EDIT BUTTON */}
 								<button
 									type="button"
 									onClick={() => onEdit(event)}
@@ -73,6 +88,8 @@ export const EventList = ({ events, onEdit, onDelete }: EventListProps) => {
 								>
 									Edit
 								</button>
+                                
+                                {/* TEAMMATE'S DELETE BUTTON */}
 								<DeleteButton
 									eventTitle={event.title}
 									onDelete={() => onDelete(event.id)}

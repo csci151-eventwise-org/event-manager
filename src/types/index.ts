@@ -4,6 +4,7 @@ export interface AppEvent {
   date: string;
   time: string;
   location: string;
+  description: string;
   isAttended: boolean; // Required for the "Mark as Attended" feature later
 }
 
