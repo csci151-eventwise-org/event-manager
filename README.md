@@ -6,35 +6,35 @@ An event tracking application that helps users organize and manage their upcomin
 
 ## Team Members
 
-| Full Name               | Role      | GitHub Username | Assigned Atomic Task                 |
-| ----------------------- | --------- | --------------- | ------------------------------------ |
-| Catigan, Andrei William | Developer | @AndreiCatigan  | [Event Status Management]            |
-| Concoles, Cyril Jade    | Developer | @con-cyse       | [Edit Event Details & Delete Events] |
-| Moreno, Radz Ponce      | Developer | @donot4tmee     | [Event List Display]                 |
-| Mosquera, Gabriel       | Developer | @gabiXDpapi     | [Event Creation]                     |
-| Oreiro, Genesis Ar      | Developer | @nyx-garso      | [Event Details and Filtering]        |
+| Full Name               | Role      | GitHub Username | Assigned Atomic Task                                 |
+| ----------------------- | --------- | --------------- | ---------------------------------------------------- |
+| Catigan, Andrei William | Developer | @AndreiCatigan  | [Event Status Management], QA, PR Reviewer           |
+| Concoles, Cyril Jade    | Developer | @con-cyse       | [Edit Event Details & Delete Events], Lead Developer |
+| Moreno, Radz Ponce      | Developer | @donot4tmee     | [Event List Display], Bug fixer                      |
+| Mosquera, Gabriel       | Developer | @gabiXDpapi     | [Event Creation], Team Lead, PR Reviewer             |
+| Oreiro, Genesis Ar      | Developer | @nyx-garso      | [Event Details and Filtering], Bug fixer             |
 
 ---
 
 ## Features Implemented
 
-- [ ] Create Event - Add events with title, date, time, location
-- [ ] Event List - Display all events chronologically
-- [ ] Event Details - Show full event information
-- [ ] Mark as Attended - Toggle event attendance status
-- [ ] Filter Events - Filter by upcoming/past/all
-- [ ] Edit Event - Modify event details
-- [ ] Delete Event - Remove events with confirmation
-- [ ] [Add any additional features implemented]
+- [x] Create Event - Add events with title, date, time, location
+- [x] Event List - Display all events chronologically
+- [x] Event Details - Show full event information
+- [x] Mark as Attended - Toggle event attendance status
+- [x] Filter Events - Filter by upcoming/past/all
+- [x] Edit Event - Modify event details
+- [x] Delete Event - Remove events with confirmation
+- [x] Modern UI with Tailwind CSS - Gradient backgrounds, glassmorphism effects, and smooth animations
 
 ---
 
 ## Technology Stack
 
-- **Frontend Framework:** React
-- **Language:** TypeScript / JavaScript
-- **Build Tool:** Vite / Create React App
-- **Styling:** [Your choice - CSS/Tailwind/etc.]
+- **Frontend Framework:** React 19
+- **Language:** TypeScript
+- **Build Tool:** Vite
+- **Styling:** Tailwind CSS 4
 - **State Management:** React Hooks (useState, useEffect)
 - **Version Control:** Git & GitHub
 
@@ -53,25 +53,25 @@ An event tracking application that helps users organize and manage their upcomin
 1. **Clone the repository**
 
    ```bash
-   [Write the command to clone the repository]
-   [Write the command to navigate to the project directory]
+   git clone https://github.com/csci151-eventwise-org/event-manager.git
+   cd event-manager
    ```
 
 2. **Install dependencies**
 
    ```bash
-   [Write the command to install project dependencies]
+   npm install
    ```
 
 3. **Run the development server**
 
    ```bash
-   [Write the command to start the development server]
+   npm run dev
    ```
 
 4. **Open your browser**
 
-   [Write the URL and port where your application runs]
+   Navigate to `http://localhost:5173` (or the port shown in your terminal)
 
 ---
 
