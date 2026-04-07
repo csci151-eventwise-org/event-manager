@@ -151,11 +151,11 @@ event-manager/
 
 ### Conflict PT1
 
-![Conflict PT1](conflict%20pt1.png)
+![Conflict PT1](./public/conflictpt1.png)
 
 ### Conflict PT2
 
-![Conflict PT2](conflictpt2.png)
+![Conflict PT2](./public/conflictpt2.png)
 
 ---
 
