@@ -62,20 +62,26 @@ A modern, responsive event tracking application built with React and TypeScript 
 
 ```
 event-manager/
-├── public/                 # Static assets
+├── public/
 ├── src/
-│   ├── components/         # React components
-│   │   └── EventForm.tsx   # Event creation form
-│   ├── types/              # TypeScript type definitions
-│   │   └── index.ts        # Event and form data types
-│   ├── App.tsx             # Main application component
-│   ├── App.css             # Additional styles
-│   ├── index.css           # Global styles with Tailwind imports
-│   └── main.tsx            # Application entry point
-├── package.json            # Project dependencies and scripts
-├── vite.config.ts          # Vite configuration
-├── tsconfig.json           # TypeScript configuration
-└── README.md               # Project documentation
+│   ├── components/
+│   │   └── EventForm.tsx
+│   ├── types/
+│   │   └── index.ts
+│   ├── App.tsx
+│   ├── App.css
+│   ├── index.css
+│   └── main.tsx
+├── index.html
+├── package.json
+├── vite.config.ts
+├── tsconfig.json
+├── tsconfig.app.json
+├── tsconfig.node.json
+├── eslint.config.js
+├── Group_2_Instructions.md
+├── Group_2_README.md
+└── README.md
 ```
 
 ## 🎨 Design Features

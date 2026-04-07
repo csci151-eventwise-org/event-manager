@@ -1,4 +1,5 @@
 # CSci 151 - Practical Exam 1: Git & GitHub Workflow
+
 ## Group 2: Event Manager
 
 **Duration:** 3 hours  
@@ -12,20 +13,20 @@
 
 Your team consists of the following members:
 
-| Full Name | GitHub Username | Assigned Atomic Task |
-|-----------|-----------------|---------------------|
-| Boyles, Christian Earl James | @username | |
-| Catigan, Andrei William | @username | |
-| Concoles, Cyril Jade | @username | |
-| Moreno, Radz Ponce | @username | |
-| Mosquera, Gabriel | @username | |
-| Oreiro, Genesis Ar | @username | |
+| Full Name               | GitHub Username | Assigned Atomic Task               |
+| ----------------------- | --------------- | ---------------------------------- |
+| Catigan, Andrei William | @username       | Event Status Management            |
+| Concoles, Cyril Jade    | @username       | Edit Event Details & Delete Events |
+| Moreno, Radz Ponce      | @username       | Event List Display                 |
+| Mosquera, Gabriel       | @username       | Event Creation                     |
+| Oreiro, Genesis Ar      | @username       | Event Details and Filtering        |
 
 ### Team Leader Selection and Responsibilities
 
-**Team Leader:** _________________ (Select one team member to lead)
+**Team Leader:** **\*\*\*\***\_**\*\*\*\*** (Select one team member to lead)
 
 The team leader is responsible for:
+
 - Coordinating task delegation among team members, ensuring each member has an atomic task
 - Facilitating communication between team members and mentors
 - Ensuring the team follows the Git and GitHub workflow
@@ -36,6 +37,7 @@ The team leader is responsible for:
 ### Team Member Responsibilities
 
 All team members are responsible for:
+
 - Implementing their assigned atomic task independently
 - Creating feature branches and making atomic commits
 - Creating and reviewing pull requests with team members and mentors
@@ -50,6 +52,7 @@ All team members are responsible for:
 Build an event tracking application with the following **core features**:
 
 ### Required Features:
+
 1. **Event Creation** - Add new events with title, date, time, and location
 2. **Event List Display** - Display all upcoming events in chronological order
 3. **Event Details and Filtering** - Show full details of each event; Filter by upcoming, past, or all events
@@ -58,6 +61,7 @@ Build an event tracking application with the following **core features**:
 6. **Delete Events** - Remove events with confirmation
 
 ### Optional Features (if time permits):
+
 - Event countdown timer (days until event)
 - Calendar view
 - Event categories/tags
@@ -80,16 +84,19 @@ Build an event tracking application with the following **core features**:
 ## GitHub Setup Instructions
 
 ### Step 1: Create Organization
+
 1. One team member creates a GitHub Organization named: **`csci151-eventwise-org`**
 2. Invite all team members to the organization
 3. Invite professors: **`infinityweaver`** and **`KaelNierras`**
 
 ### Step 2: Create Repository
+
 1. Create a **PUBLIC** repository named: **`event-manager`**
 2. Initialize with a README.md
 3. All team members clone the repository
 
 ### Step 3: Setup Branching Strategy
+
 Create a `develop` branch as the main integration branch for all features, separate from the `main` production branch.
 
 ---
@@ -97,12 +104,14 @@ Create a `develop` branch as the main integration branch for all features, separ
 ## Git Workflow Requirements ⚠️ CRITICAL - Main Evaluation Focus
 
 ### Branch Strategy (REQUIRED)
+
 - `main` - Protected branch for production-ready code only
 - `develop` - Integration branch for all features and Pull Requests
 - Feature branches - Individual branches for each feature implementation
 - Bug fix branches - For addressing any critical issues (if needed)
 
 ### Minimum Git Activities Required:
+
 - ✅ At least **6 feature branches** (one per major feature)
 - ✅ At least **18 atomic commits** total across all members (minimum 3 per member)
 - ✅ At least **6 pull requests** with descriptive purposes
@@ -111,6 +120,7 @@ Create a `develop` branch as the main integration branch for all features, separ
 - ✅ All commits should convey meaningful change descriptions
 
 ### Pull Request Workflow:
+
 1. Create a feature branch from the `develop` branch
 2. Implement your feature with atomic commits following best practices
 3. Push your feature branch to GitHub
@@ -126,20 +136,25 @@ When creating a PR, use the following template in the description:
 
 ```markdown
 ## Description
+
 Briefly describe the feature or changes implemented in this PR.
 
 ## Related Issue
+
 Link to any related issues (if applicable).
 
 ## Type of Change
+
 - [ ] New feature
 - [ ] Bug fix
 - [ ] Refactoring
 
 ## How to Test
+
 Provide instructions on how to test the changes.
 
 ## Checklist
+
 - [ ] Code follows project conventions
 - [ ] Self-review completed
 - [ ] No new warnings or errors introduced
@@ -153,6 +168,7 @@ Provide instructions on how to test the changes.
 ## README.md Requirements
 
 Your README must include:
+
 - ✅ Project title and description
 - ✅ Team members table with assigned atomic tasks
 - ✅ Features implemented (checklist)
@@ -167,10 +183,12 @@ Your README must include:
 ## Evaluation Criteria
 
 You will be graded on:
+
 - **Individual (50%):** Your personal Git contributions, commits, PRs, code
 - **Team (50%):** Overall workflow, branching strategy, collaboration
 
 **Focus areas:**
+
 - Meaningful commit messages and descriptions
 - Atomic commits (one logical change per commit)
 - Proper branching strategy
@@ -183,6 +201,7 @@ You will be graded on:
 ## Submission Checklist
 
 Before the deadline, verify:
+
 - [ ] Organization `csci151-eventwise-org` created
 - [ ] Repository `event-manager` is PUBLIC
 - [ ] Professors invited to organization

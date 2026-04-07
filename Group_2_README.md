@@ -6,14 +6,13 @@ An event tracking application that helps users organize and manage their upcomin
 
 ## Team Members
 
-| Full Name | Role | GitHub Username | Assigned Atomic Task |
-|-----------|------|-----------------|---------------------|
-| Boyles, Christian Earl James | Developer | @username | [Fill in specific tasks/features assigned] |
-| Catigan, Andrei William | Developer | @username | [Fill in specific tasks/features assigned] |
-| Concoles, Cyril Jade | Developer | @username | [Fill in specific tasks/features assigned] |
-| Moreno, Radz Ponce | Developer | @username | [Fill in specific tasks/features assigned] |
-| Mosquera, Gabriel | Developer | @username | [Fill in specific tasks/features assigned] |
-| Oreiro, Genesis Ar | Developer | @username | [Fill in specific tasks/features assigned] |
+| Full Name               | Role      | GitHub Username | Assigned Atomic Task                 |
+| ----------------------- | --------- | --------------- | ------------------------------------ |
+| Catigan, Andrei William | Developer | @username       | [Event Status Management]            |
+| Concoles, Cyril Jade    | Developer | @username       | [Edit Event Details & Delete Events] |
+| Moreno, Radz Ponce      | Developer | @username       | [Event List Display]                 |
+| Mosquera, Gabriel       | Developer | @username       | [Event Creation]                     |
+| Oreiro, Genesis Ar      | Developer | @username       | [Event Details and Filtering]        |
 
 ---
 
@@ -44,6 +43,7 @@ An event tracking application that helps users organize and manage their upcomin
 ## Setup & Installation
 
 ### Prerequisites
+
 - Node.js (v18 or higher)
 - npm or yarn
 - Git
@@ -51,23 +51,26 @@ An event tracking application that helps users organize and manage their upcomin
 ### Installation Steps
 
 1. **Clone the repository**
+
    ```bash
    [Write the command to clone the repository]
    [Write the command to navigate to the project directory]
    ```
 
 2. **Install dependencies**
+
    ```bash
    [Write the command to install project dependencies]
    ```
 
 3. **Run the development server**
+
    ```bash
    [Write the command to start the development server]
    ```
 
 4. **Open your browser**
-   
+
    [Write the URL and port where your application runs]
 
 ---
@@ -109,6 +112,7 @@ We followed the **Conventional Commits** specification:
 [Document conflicts here]
 
 **Example:**
+
 - **Conflict:** Merge conflict in `App.tsx` when merging `feature/event-list` into `develop`
 - **Files Affected:** `src/App.tsx`
 - **Cause:** Multiple members edited event state management
@@ -146,9 +150,11 @@ event-manager/
 ## Challenges & Learnings
 
 **Challenges:**
+
 - [Describe challenges faced]
 
 **Key Learnings:**
+
 - [What did the team learn about Git workflow?]
 - [What did the team learn about collaboration?]
 
@@ -173,6 +179,7 @@ event-manager/
 - Oreiro, Genesis Ar - @username
 
 **Course Professors:**
+
 - Mr. Jomari Joseph A. Barrera
 - Mr. Kyle Anthony F. Nierras
 
