@@ -29,6 +29,7 @@ function App() {
         </button>
       </section>
 
+<<<<<<< Updated upstream
       <div className="ticks"></div>
 
       <section id="next-steps">
@@ -116,6 +117,23 @@ function App() {
       <section id="spacer"></section>
     </>
   )
+=======
+      {editingEvent ? (
+        <EditForm
+          initialData={{
+            title: editingEvent.title,
+            date: editingEvent.date,
+            time: editingEvent.time,
+            location: editingEvent.location,
+            description: editingEvent.description,
+          }}
+          onSubmit={handleSaveEdit}
+          onCancel={() => setEditingEventId(null)}
+        />
+      ) : null}
+    </div>
+  );
+>>>>>>> Stashed changes
 }
 
 export default App
