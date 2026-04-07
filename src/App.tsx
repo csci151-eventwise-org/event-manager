@@ -1,12 +1,13 @@
-import { useState } from "react";
-// 1. Update to the named import with curly braces
-import { EventList } from "./components/EventList";
-import type { AppEvent, EventFormData } from "./types/index";
+import { useState, useEffect } from "react"; // Kept useEffect from develop
+import { EventList } from "./components/EventList"; // Kept your import
+import type { AppEvent, EventFormData, EventFilterType } from "./types/index"; // Added EventFilterType
 import { EventForm } from "./components/EventForm";
 import "./App.css";
 
 function App() {
   const [events, setEvents] = useState<AppEvent[]>([]);
+  const [filter, setFilter] = useState<EventFilterType>("all"); // From develop
+  const [filteredEvents, setFilteredEvents] = useState<AppEvent[]>([]); // From develop
 
   const handleCreateEvent = (formData: EventFormData) => {
     const newEvent: AppEvent = {
@@ -17,6 +18,7 @@ function App() {
     setEvents((prev) => [...prev, newEvent]);
   };
 
+  // --- YOUR FEATURE LOGIC ---
   const toggleEventStatus = (eventId: string) => {
     setEvents((prevEvents) =>
       prevEvents.map((event) =>
@@ -26,6 +28,34 @@ function App() {
       )
     );
   };
+
+  // --- FILTER FEATURE LOGIC (from develop) ---
+  const handleFilterChange = (newFilter: EventFilterType) => {
+    setFilter(newFilter);
+  };
+
+  function filterEvents(events: AppEvent[], filter: EventFilterType): AppEvent[] {
+    const today = new Date();
+    const todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    return events.filter((e) => {
+      const eventDate = new Date(e.date);
+      const eventDateOnly = new Date(eventDate.getFullYear(), eventDate.getMonth(), eventDate.getDate());
+      switch (filter) {
+        case "past":
+          return eventDateOnly < todayDate;
+        case "current":
+          return eventDateOnly.getTime() === todayDate.getTime();
+        case "upcoming":
+          return eventDateOnly > todayDate;
+        default:
+          return true;
+      }
+    });
+  }
+
+  useEffect(() => {
+    setFilteredEvents(filterEvents(events, filter));
+  }, [events, filter]);
 
   return (
     <div className="min-h-screen bg-slate-50 p-6 md:p-12 font-sans">
@@ -45,8 +75,8 @@ function App() {
           </div>
 
           <div className="md:col-span-7 lg:col-span-8">
-            {/* 2. Simply render the component with your props */}
-            <EventList events={events} onToggleStatus={toggleEventStatus} />
+            {/* RESOLUTION: We pass filteredEvents and YOUR toggle function */}
+            <EventList events={filteredEvents} onToggleStatus={toggleEventStatus} />
           </div>
         </div>
       </div>
