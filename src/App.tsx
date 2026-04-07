@@ -107,7 +107,6 @@ function App() {
                 />
               </div>
               
-              {/* Combine all props into the EventList */}
               <EventList 
                 events={filteredEvents} 
                 onToggleStatus={toggleEventStatus}
@@ -126,6 +125,7 @@ function App() {
             date: editingEvent.date,
             time: editingEvent.time,
             location: editingEvent.location,
+            description: editingEvent.description,
           }}
           onSubmit={handleSaveEdit}
           onCancel={() => setEditingEventId(null)}

@@ -1,7 +1,7 @@
 import type { AppEvent } from "../types";
 import { DeleteButton } from "./DeleteButton";
+import { useState } from "react";
 
-// Combine the props from both branches
 interface EventListProps {
 	events: AppEvent[];
 	onToggleStatus: (id: string) => void;
@@ -26,7 +26,12 @@ const formatEventDate = (event: AppEvent): string => {
 };
 
 export const EventList = ({ events, onToggleStatus, onEdit, onDelete }: EventListProps) => {
-    // We just sort here, filtering is handled by the EventFilter component now!
+	const [expandedEventId, setExpandedEventId] = useState<string | null>(null);
+
+	const toggleDescription = (eventId: string) => {
+		setExpandedEventId((prev) => (prev === eventId ? null : eventId));
+	};
+
 	const sortedEvents = [...events].sort((a, b) => getEventTimestamp(a) - getEventTimestamp(b));
 
 	if (sortedEvents.length === 0) {
@@ -51,7 +56,17 @@ export const EventList = ({ events, onToggleStatus, onEdit, onDelete }: EventLis
 				{sortedEvents.map((event) => (
 					<li
 						key={event.id}
-						className={`rounded-lg border px-4 py-3 transition-colors ${
+						onClick={() => toggleDescription(event.id)}
+						onKeyDown={(e) => {
+							if (e.key === "Enter" || e.key === " ") {
+								e.preventDefault();
+								toggleDescription(event.id);
+							}
+						}}
+						tabIndex={0}
+						role="button"
+						aria-expanded={expandedEventId === event.id}
+						className={`rounded-lg border px-4 py-3 transition-colors cursor-pointer ${
                             event.isAttended ? 'border-green-300 bg-green-50' : 'border-gray-200 bg-gray-50 hover:bg-gray-100'
                         }`}
 					>
@@ -61,16 +76,17 @@ export const EventList = ({ events, onToggleStatus, onEdit, onDelete }: EventLis
 								<p className="mt-1 text-sm text-gray-600">{formatEventDate(event)}</p>
 							</div>
 							
-                            {/* Actions Container */}
 							<div className="flex items-center gap-2">
 								<span className="rounded-md bg-white px-2.5 py-1 text-xs font-medium text-gray-700 ring-1 ring-gray-200">
 									{event.location}
 								</span>
-                                
-                                {/* YOUR MARK AS ATTENDED BUTTON */}
-                                <button
+								
+								<button
                                     type="button"
-                                    onClick={() => onToggleStatus(event.id)}
+									onClick={(e) => {
+										e.stopPropagation();
+										onToggleStatus(event.id);
+									}}
                                     className={`rounded-md px-3 py-1.5 text-xs font-semibold shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 ${
                                         event.isAttended
                                             ? 'bg-green-600 text-white hover:bg-green-700 focus:ring-green-500'
@@ -80,22 +96,31 @@ export const EventList = ({ events, onToggleStatus, onEdit, onDelete }: EventLis
                                     {event.isAttended ? 'Completed ✓' : 'Mark as Attended'}
                                 </button>
 
-                                {/* TEAMMATE'S EDIT BUTTON */}
 								<button
 									type="button"
-									onClick={() => onEdit(event)}
+									onClick={(e) => {
+										e.stopPropagation();
+										onEdit(event);
+									}}
 									className="rounded-md bg-violet-600 px-3 py-1.5 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2"
 								>
 									Edit
 								</button>
-                                
-                                {/* TEAMMATE'S DELETE BUTTON */}
-								<DeleteButton
-									eventTitle={event.title}
-									onDelete={() => onDelete(event.id)}
-								/>
+								
+								<div onClick={(e) => e.stopPropagation()}>
+									<DeleteButton
+										eventTitle={event.title}
+										onDelete={() => onDelete(event.id)}
+									/>
+								</div>
 							</div>
 						</div>
+
+						{expandedEventId === event.id ? (
+							<p className="mt-3 text-sm text-gray-700 border-t pt-2 border-gray-200/60">
+								{event.description || "No description provided."}
+							</p>
+						) : null}
 					</li>
 				))}
 			</ul>
